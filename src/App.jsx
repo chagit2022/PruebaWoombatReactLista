@@ -9,7 +9,7 @@ function App() {
     { id: nanoid(9), content: "item222222222" },
     { id: nanoid(9), content: "item3" },
   ]);
-
+  const [showName, setShowName] = usestate(false);
   const [item, setItem] = useState("");
   const [validation, setValidation] = useState(false);
 
@@ -40,31 +40,18 @@ function App() {
           <label htmlFor="lista-item" className="text-slate-100">
             Su nombre :
           </label>
-          <input
-            // value={}
-            // onChange={(e) => setItem(e.target.value)}
-            type="text"
-            className="mt-2 p-2 block w-full rounded-md"
-          />
+          <input type="text" className="mt-2 p-2 block w-full rounded-md" />
           <label htmlFor="lista-item" className="text-slate-100">
-            Su apellido :
+            Sus apellidos :
           </label>
-          <input
-            // value={}
-            // onChange={(e) => setItem(e.target.value)}
-            type="text"
-            className="mt-2 p-2 block w-full rounded-md"
-          />
+          <input type="text" className="mt-2 p-2 block w-full rounded-md" />
           <label htmlFor="lista-item" className="text-slate-100">
             Su Edad :
           </label>
-          <input
-            // value={}
-            // onChange={(e) => setItem(e.target.value)}
-            type="number"
-            className="mt-2 p-2 block w-full rounded-md"
-          />
+          <input type="number" className="mt-2 p-2 block w-full rounded-md" />
         </form>
+
+        {/* ------------------------------------------------- */}
         <h1 className="text-3xl text-white text-center mb-5">
           Lista de tareas
         </h1>
