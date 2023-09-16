@@ -20,26 +20,25 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (item === "") {
-      setValidation(true);
-      return;
-    }
-
-    if (
-      nombre.trim() === "" &&
-      apellidos.trim() === "" &&
-      edades.trim() === ""
-    ) {
+    if (nombre.trim() === "" && apellidos.trim() === "" && edad.trim() === "") {
       setNombreError(true);
       setApellidosError(true);
+      setEdad(true);
     } else {
       setNombreError(false);
       setApellidosError(false);
+      setEdadError(false);
     }
 
     if (!nombreError) {
       console.log("Nom:", nombre);
       console.log("Apellidos", apellidos);
+      console.log("edad", edad);
+    }
+
+    if (item === "") {
+      setValidation(true);
+      return;
     }
 
     setLista([...lista, { id: nanoid(9), content: item }]);
