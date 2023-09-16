@@ -13,21 +13,26 @@ function App() {
   const [lista, setLista] = useState([{ id: nanoid(9), content: "" }]);
   const [item, setItem] = useState("");
   const [validation, setValidation] = useState(false);
-  const [mayor18, setMayor18] = useState(false);
+  const [mayor18, setMayor18] = useState("");
 
   // ****Verificar nombres&apellidos
 
   // ******** funccion para agregar item   ************
   function handleSubmit(e) {
     e.preventDefault();
-
-    if (nombre.trim() === "" && apellidos.trim() === "" && edad.trim() === "") {
+    if (nombre.trim() === "") {
       setNombreError(true);
-      setApellidosError(true);
-      setEdadError(true);
     } else {
       setNombreError(false);
+    }
+    if (apellidos.trim() === "") {
+      setApellidosError(true);
+    } else {
       setApellidosError(false);
+    }
+    if (edad.trim() === "") {
+      setEdadError(true);
+    } else {
       setEdadError(false);
     }
 
@@ -41,9 +46,11 @@ function App() {
       setValidation(true);
       return;
     }
-    // si validacion 18, poner parseInt para tener un intiger
+    // si validacion 18, y poner parseInt para tener un intiger
     if (parseInt(edad, 10) >= 18) {
       setMayor18(true);
+    } else {
+      setMayor18(false);
     }
 
     setLista([...lista, { id: nanoid(9), content: item }]);
