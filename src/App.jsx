@@ -13,6 +13,7 @@ function App() {
   const [lista, setLista] = useState([{ id: nanoid(9), content: "" }]);
   const [item, setItem] = useState("");
   const [validation, setValidation] = useState(false);
+  const [mayor18, setMayor18] = useState(false);
 
   // ****Verificar nombres&apellidos
 
@@ -23,7 +24,7 @@ function App() {
     if (nombre.trim() === "" && apellidos.trim() === "" && edad.trim() === "") {
       setNombreError(true);
       setApellidosError(true);
-      setEdad(true);
+      setEdadError(true);
     } else {
       setNombreError(false);
       setApellidosError(false);
@@ -39,6 +40,10 @@ function App() {
     if (item === "") {
       setValidation(true);
       return;
+    }
+
+    if ((edad, 10) >= 18) >= {
+      setMayor18(true);}
     }
 
     setLista([...lista, { id: nanoid(9), content: item }]);
@@ -84,14 +89,15 @@ function App() {
             Su Edad :
           </label>
           <input
-            // value={}
-            // onChange={(e) => setItem(e.target.value)}
+            value={edad}
+            onChange={(e) => setEdad(e.target.value)}
             type="number"
             className="mt-2 p-2 block w-full rounded-md"
           />
+          {edadError && <p className="bg-red-700">Escribe su edad por favor</p>}
           <button
             type="submit"
-            className="cente mt-3 px-7 p-2 bg-blue-500 text-white rounded"
+            className="center mt-3 px-7 p-2 bg-blue-500 text-white rounded"
           >
             Enviar
           </button>
