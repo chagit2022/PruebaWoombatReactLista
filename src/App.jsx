@@ -41,9 +41,9 @@ function App() {
       setValidation(true);
       return;
     }
-
-    if ((edad, 10) >= 18) >= {
-      setMayor18(true);}
+    // si validacion 18, poner parseInt para tener un intiger
+    if (parseInt(edad, 10) >= 18) {
+      setMayor18(true);
     }
 
     setLista([...lista, { id: nanoid(9), content: item }]);
@@ -103,44 +103,56 @@ function App() {
           </button>
           <br />
         </form>
-
-        {/* ------------------------------------------------- */}
         <h1 className="text-3xl text-white text-center mb-5">
           Lista de tareas
         </h1>
+        {!mayor18 ? (
+          <h1 className="text-3xl text-white text-center">
+            usted debe tener mas de 18 anos para acceder a la lista de tareas
+          </h1>
+        ) : (
+          <>
+            {/* formulario del input */}
+            <form onSubmit={handleSubmit} className="mb-10">
+              <label htmlFor="lista-item" className="text-slate-100">
+                Agregar tarea
+              </label>
+              <input
+                value={item}
+                onChange={(e) => setItem(e.target.value)}
+                type="text"
+                className="mt-2 p-2 block w-full rounded-md"
+              />
+              {/* validador si no hay nada en el input*/}
+              {validation && (
+                <p className="bg-red-700">!!! escribe su tarea por favor!!!</p>
+              )}
 
-        {/* formulario del input */}
-        <form onSubmit={handleSubmit} className="mb-10">
-          <label htmlFor="lista-item" className="text-slate-100">
-            Agregar tarea
-          </label>
-          <input
-            value={item}
-            onChange={(e) => setItem(e.target.value)}
-            type="text"
-            className="mt-2 p-2 block w-full rounded-md"
-          />
-          {/* validador si no hay nada en el input*/}
-          {validation && (
-            <p className="bg-red-700">!!! escribe su tarea por favor!!!</p>
-          )}
+              <button className="mt-4 px-4 py-2 bg-red-200 rounded-lg min-w-[115px]">
+                Agregar
+              </button>
+            </form>
 
-          <button className="mt-4 px-4 py-2 bg-red-200 rounded-lg min-w-[115px]">
-            Agregar
-          </button>
-        </form>
+            {/* mensaje de 0 tareas */}
+            {lista.length === 0 && (
+              <li className="text-white text-md text-center ">
+                No tiene tareas
+              </li>
+            )}
 
-        {/* mensaje de 0 tareas */}
-        {lista.length === 0 && (
-          <li className="text-white text-md text-center ">No tiene tareas</li>
+            {/* container de la lista de las tareas */}
+            <ul>
+              {lista.map((item) => (
+                <ListaItems
+                  key={item.id}
+                  itemData={item}
+                  borrarItem={borrarItem}
+                />
+              ))}
+            </ul>
+          </>
         )}
-
-        {/* container de la lista de las tareas */}
-        <ul>
-          {lista.map((item) => (
-            <ListaItems key={item.id} itemData={item} borrarItem={borrarItem} />
-          ))}
-        </ul>
+        ;
       </div>
     </div>
   );
