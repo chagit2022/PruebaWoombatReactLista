@@ -4,14 +4,17 @@ import { nanoid } from "nanoid";
 import ListaItems from "./Components/listaItems";
 
 function App() {
-  const [lista, setLista] = useState([
-    { id: nanoid(9), content: "item1" },
-    { id: nanoid(9), content: "item222222222" },
-    { id: nanoid(9), content: "item3" },
-  ]);
-  const [showName, setShowName] = usestate(false);
+  const [nombre, setNombre] = useState("");
+  const [nombreError, setNombreError] = useState(false);
+  const [apellidos, setApellidos] = useState("");
+  const [apellidosError, setApellidosError] = useState(false);
+  const [edad, setEdad] = useState("");
+  const [edadError, setEdadError] = useState(false);
+  const [lista, setLista] = useState([{ id: nanoid(9), content: "" }]);
   const [item, setItem] = useState("");
   const [validation, setValidation] = useState(false);
+
+  // ****Verificar nombres&apellidos
 
   // ******** funccion para agregar item   ************
   function handleSubmit(e) {
@@ -20,6 +23,23 @@ function App() {
     if (item === "") {
       setValidation(true);
       return;
+    }
+
+    if (
+      nombre.trim() === "" &&
+      apellidos.trim() === "" &&
+      edades.trim() === ""
+    ) {
+      setNombreError(true);
+      setApellidosError(true);
+    } else {
+      setNombreError(false);
+      setApellidosError(false);
+    }
+
+    if (!nombreError) {
+      console.log("Nom:", nombre);
+      console.log("Apellidos", apellidos);
     }
 
     setLista([...lista, { id: nanoid(9), content: item }]);
@@ -33,22 +53,50 @@ function App() {
   }
 
   return (
-    <div className="h-screen bg-slate-900 ">
+    <div className="h-screen">
       <div className="max-w-4xl mx-auto pt-20 px-6">
         <h1 className="text-white mb-10">Valida tu entrada con tu mayoridad</h1>
         <form onSubmit={handleSubmit} className="mb-10">
           <label htmlFor="lista-item" className="text-slate-100">
             Su nombre :
           </label>
-          <input type="text" className="mt-2 p-2 block w-full rounded-md" />
+          <input
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            type="text"
+            className="mt-2 p-2 block w-full rounded-md"
+          />
+          {nombreError && (
+            <p className="bg-red-700">Escribe su nombre por favor</p>
+          )}
           <label htmlFor="lista-item" className="text-slate-100">
             Sus apellidos :
           </label>
-          <input type="text" className="mt-2 p-2 block w-full rounded-md" />
+          <input
+            value={apellidos}
+            onChange={(e) => setApellidos(e.target.value)}
+            type="text"
+            className="mt-2 p-2 block w-full rounded-md"
+          />
+          {apellidosError && (
+            <p className="bg-red-700">Escribe sus apellidos por favor</p>
+          )}
           <label htmlFor="lista-item" className="text-slate-100">
             Su Edad :
           </label>
-          <input type="number" className="mt-2 p-2 block w-full rounded-md" />
+          <input
+            // value={}
+            // onChange={(e) => setItem(e.target.value)}
+            type="number"
+            className="mt-2 p-2 block w-full rounded-md"
+          />
+          <button
+            type="submit"
+            className="cente mt-3 px-7 p-2 bg-blue-500 text-white rounded"
+          >
+            Enviar
+          </button>
+          <br />
         </form>
 
         {/* ------------------------------------------------- */}
