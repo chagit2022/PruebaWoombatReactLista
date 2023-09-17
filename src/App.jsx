@@ -22,21 +22,9 @@ function App() {
   // ******** funccion para agregar item   ************
   function handleSubmit(e) {
     e.preventDefault();
-    if (nombre.trim() === "") {
-      setNombreError(true);
-    } else {
-      setNombreError(false);
-    }
-    if (apellidos.trim() === "") {
-      setApellidosError(true);
-    } else {
-      setApellidosError(false);
-    }
-    if (edad.trim() === "") {
-      setEdadError(true);
-    } else {
-      setEdadError(false);
-    }
+    setNombreError(nombre.trim() === "" ? true : false);
+    setApellidosError(apellidos.trim() === "" ? true : false);
+    setEdadError(edad.trim() === "" ? true : false);
 
     if (!nombreError) {
       console.log("Nom:", nombre);
