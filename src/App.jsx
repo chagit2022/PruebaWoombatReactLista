@@ -46,7 +46,7 @@ function App() {
       setValidation(true);
       return;
     }
-    // si validacion 18, y poner parseInt para tener un intiger
+    // si validacion 18, y poner parseInt para tenerlo un intiger
     if (parseInt(edad, 10) >= 18) {
       setMayor18(true);
     } else {
