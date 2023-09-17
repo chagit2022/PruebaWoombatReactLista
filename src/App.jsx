@@ -41,11 +41,6 @@ function App() {
       console.log("Apellidos", apellidos);
       console.log("edad", edad);
     }
-
-    if (item === "") {
-      setValidation(true);
-      return;
-    }
     // si validacion 18, y poner parseInt para tenerlo un intiger
     if (parseInt(edad, 10) >= 18) {
       setMayor18(true);
@@ -53,6 +48,12 @@ function App() {
       setMayor18(false);
     }
 
+    // validacion de los items de la lista de tareas
+    if (item === "") {
+      setValidation(true);
+      return;
+    }
+    // formato del item de la lista
     setLista([...lista, { id: nanoid(9), content: item }]);
     // reset input
     setItem("");
@@ -66,7 +67,9 @@ function App() {
   return (
     <div className="h-screen">
       <div className="max-w-4xl mx-auto pt-20 px-6">
-        <h1 className="text-white mb-10">Valida tu entrada con tu mayoridad</h1>
+        <h1 className="text-5xl text-white text-center mb-5">
+          lista de tareas
+        </h1>
         <form onSubmit={handleSubmit} className="mb-10">
           <label htmlFor="lista-item" className="text-slate-100">
             Su nombre :
@@ -110,16 +113,13 @@ function App() {
           </button>
           <br />
         </form>
-        <h1 className="text-3xl text-white text-center mb-5">
-          Lista de tareas
-        </h1>
         {!mayor18 ? (
           <h1 className="text-3xl text-white text-center">
             usted debe tener mas de 18 anos para acceder a la lista de tareas
           </h1>
         ) : (
           <>
-            {/* formulario del input */}
+            {/* formulario del elemento */}
             <form onSubmit={handleSubmit} className="mb-10">
               <label htmlFor="lista-item" className="text-slate-100">
                 Agregar tarea
@@ -130,7 +130,7 @@ function App() {
                 type="text"
                 className="mt-2 p-2 block w-full rounded-md"
               />
-              {/* validador si no hay nada en el input*/}
+              {/* validador si no hay nada en el elemento*/}
               {validation && (
                 <p className="bg-red-700">!!! escribe su tarea por favor!!!</p>
               )}
