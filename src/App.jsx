@@ -4,20 +4,22 @@ import { nanoid } from "nanoid";
 import ListaItems from "./Components/listaItems";
 
 function App() {
-  const [nombre, setNombre] = useState("");
   const [nombreError, setNombreError] = useState(false);
   const [apellidos, setApellidos] = useState("");
-  const [apellidosError, setApellidosError] = useState(false);
   const [edad, setEdad] = useState("");
+  // ****Verificar nombres&apellidos
+  const [nombre, setNombre] = useState("");
+  const [apellidosError, setApellidosError] = useState(false);
   const [edadError, setEdadError] = useState(false);
+  // ***lista y items
   const [lista, setLista] = useState([
     { id: nanoid(9), content: "Pasar la prueba en woombat" },
   ]);
   const [item, setItem] = useState("");
+  // ***Validacion items
   const [validation, setValidation] = useState(false);
+  // ****Validacion edad
   const [mayor18, setMayor18] = useState("");
-
-  // ****Verificar nombres&apellidos
 
   // ******** funccion para agregar item   ************
   function handleSubmit(e) {
@@ -49,6 +51,7 @@ function App() {
   function borrarItem(id) {
     setLista(lista.filter((item) => item.id !== id));
   }
+  // *** integrar array de los datos al ingreso
 
   return (
     <div className="h-screen">
