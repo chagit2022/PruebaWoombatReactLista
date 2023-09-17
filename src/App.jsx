@@ -32,11 +32,7 @@ function App() {
       console.log("edad", edad);
     }
     // si validacion 18, y poner parseInt para tenerlo un intiger
-    if (parseInt(edad, 10) >= 18) {
-      setMayor18(true);
-    } else {
-      setMayor18(false);
-    }
+    setMayor18(parseInt(edad, 10) >= 18 ? true : false);
 
     // validacion de los items de la lista de tareas
     if (item === "") {
