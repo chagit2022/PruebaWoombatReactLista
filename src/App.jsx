@@ -20,6 +20,8 @@ function App() {
   const [validation, setValidation] = useState(false);
   // ****Validacion edad
   const [mayor18, setMayor18] = useState("");
+  // **creacion del objecto
+  const [datosUsuario, setDatosUsuario] = useState([]);
 
   // ******** funccion para agregar item   ************
   function handleSubmit(e) {
@@ -33,21 +35,29 @@ function App() {
       console.log("Apellidos", apellidos);
       console.log("edad", edad);
     }
-    // si validacion 18, y poner parseInt para tenerlo un intiger
+    // **si validacion 18, y poner parseInt para tenerlo un intiger
     setMayor18(parseInt(edad, 10) >= 18 ? true : false);
 
-    // validacion de los items de la lista de tareas
+    // **validacion de los items de la lista de tareas
     if (item === "") {
       setValidation(true);
       return;
     }
-    // formato del item de la lista
+    // **formato del item de la lista
     setLista([...lista, { id: nanoid(9), content: item }]);
-    // reset input
+    // **reset input
     setItem("");
     setValidation(false);
+
+    //** agregar datos del usuario */
+    const nuevoUsuarioDatos = {
+      nombre: nombre,
+      apellidos: apellidos,
+      edad: edad,
+    };
+    setDatosUsuario([...datosUsuario, nuevoUsuarioDatos]);
   }
-  // funccion para borrar item child por el id
+  // **funccion para borrar item child por el id
   function borrarItem(id) {
     setLista(lista.filter((item) => item.id !== id));
   }
@@ -117,6 +127,11 @@ function App() {
           <>
             {/* formulario del elemento */}
             <form onSubmit={handleSubmit} className="mb-10">
+              <h1 className="text-3xl text-white text-center">
+                Bienvenido, {nombre} {apellidos}, por tener {edad} años, puedes
+                usar organisar LISTA DE TAREAS.
+              </h1>
+
               <label htmlFor="lista-item" className="text-slate-100">
                 Agregar tarea
               </label>
